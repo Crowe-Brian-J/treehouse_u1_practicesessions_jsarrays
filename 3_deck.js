@@ -1,20 +1,22 @@
-/* INSTRUCTIONS
-To run this file, click in the Console below and type: node 3_deck.js 
-If the console isn't visible, click the View menu above and choose Show Console.
-
-You can clear the console by typing `clear` and pressing enter.
-
-If your program is stuck in an infinite loop, you can break out of the program by typing ctrl + C.
-*/
-
 // Note: We've supplied you a basic function that takes an array of elements and shuffles their order in the array. It's a really useful, but somewhat complex algorithm -- look in the teacher's notes for links to an explanation for how it works. You'll use this function to shuffle a deck of cards that you'll create.
-function shuffle(arr) {
+/* function shuffle(arr) {
   var j, x, i
   for (i = arr.length - 1; i > 0; i--) {
     j = Math.floor(Math.random() * (i + 1))
     x = arr[i]
     arr[i] = arr[j]
     arr[j] = x
+  }
+  return arr
+} */
+//rewritten as an arrow function
+const shuffle = (arr) => {
+  let j, x
+  for (let i = arr.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1)) //randomizes number stored in j from (i + 1) down
+    x = arr[i] //assigns number at arr[i] to x
+    arr[i] = arr[j] //assigns number at arr[j] to arr[i]
+    arr[j] = x //assigns number at x to arr[j]
   }
   return arr
 }
@@ -26,7 +28,7 @@ function shuffle(arr) {
 // 3. Inside the second, nested loop, create a new array named card, which is composed of a rank and a suite. For example ['King', '♥︎'].
 // 4. Push that card onto the deck array. Once both loops complete running, the deck array will hold 52 elements, and each of those elements are themselves an array.
 // 5. Finally, pass the new deck to the shuffle() function, and return the results.
-function createDeck() {
+/* function createDeck() {
   var suites = ['♠︎', '♣︎', '♥︎', '♦︎']
   var ranks = [
     'Ace',
@@ -45,6 +47,34 @@ function createDeck() {
   ]
   var deck = []
   // add your code below here:
+} */
+//rewritten as arrow function
+const createDeck = () => {
+  const suits = ['♠︎', '♣︎', '♥︎', '♦︎']
+  const ranks = [
+    'Ace',
+    'King',
+    'Queen',
+    'Jack',
+    '10',
+    '9',
+    '8',
+    '7',
+    '6',
+    '5',
+    '4',
+    '3',
+    '2'
+  ]
+  let deck = []
+  //my code below
+  for (let i = 0; i < suits.length; i++) {
+    for (let j = 0; j < ranks.length; j++) {
+      let card = [ranks[j], suits[i]]
+      deck.push(card)
+    }
+  }
+  return shuffle(deck)
 }
 
 // 6. Call the createDeck() function and store the results in a new variable named myDeck
